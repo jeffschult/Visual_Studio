@@ -1,0 +1,16 @@
+        Dim path As String = "C:\AccessFiles\Master.accdb"
+        Dim connection = New System.Data.OleDb.OleDbConnection("Provider=Microsoft.ACE.OLEDB.12.0;Data Source=" & path & ";")
+        Dim sqlDelete As String = "DELETE FROM tblNCWSAVBNetRecords;"
+        Dim cmd As New OleDb.OleDbCommand(sqlDelete, connection)
+
+
+        Try
+            Using connection
+                connection.Open()
+                cmd.ExecuteNonQuery()
+                connection.Close()
+            End Using
+
+        Catch ex As Exception
+            MsgBox(ex.Message)
+        End Try
